@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ ¡Estás invitado! Mis 14 Años - Benjamin Velasquez Reque</title>
+    
+    <!-- Etiquetas Open Graph para personalizar la portada/vista previa al compartir en WhatsApp -->
+    <meta property="og:title" content="⚽ ¡Ven a celebrar mis 14 años! - Benjamin Velasquez Reque 🎉">
+    <meta property="og:description" content="Sábado 21 de Noviembre • 15:30 hrs en Hotel Regina Resort & Convenciones (Bungalow Sol). ¡Habrá fútbol, parrilla y piscina!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="WhatsApp Image 2026-11-15 at 11.05.45 AM.jpeg">
+    
+    <!-- Favicon de balón de fútbol -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka e Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #14532d;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.22) 0%, transparent 60%),
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                repeating-linear-gradient(
+                    0deg,
+                    #15803d 0px,
+                    #15803d 45px,
+                    #166534 45px,
+                    #166534 90px
+                );
+            background-size: 100% 100%, 80px 80px, 80px 80px, 100% 90px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        /* Animación de balones de fútbol flotantes en el fondo */
+        .floating-ball {
+            position: fixed;
+            bottom: -80px;
+            font-size: 28px;
+            opacity: 0.25;
+            pointer-events: none;
+            animation: riseSpin 14s infinite linear;
+            z-index: 0;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+        @keyframes riseSpin {
+            0% { transform: translateY(0) rotate(0deg) scale(0.9); opacity: 0.35; }
+            100% { transform: translateY(-120vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Animación de rebote suave para la insignia 14 */
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+        }
+        .badge-14 {
+            animation: floatBadge 3.5s ease-in-out infinite;
+        }
+
+        /* Marco estilo cromo deportivo / tarjeta de jugador */
+        .player-card-frame {
+            background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 50%, #fef08a 100%);
+            box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.45), 0 0 0 4px #facc15;
+        }
+
+        /* Tarjeta principal efecto cristal */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 3px solid rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="py-6 px-4 sm:py-10 flex items-center justify-center relative">
+
+    <!-- Contenedor de balones decorativos -->
+    <div id="bubbles-container"></div>
+
+    <!-- Tarjeta Principal de la Invitación -->
+    <main class="glass-card w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative z-10 transition-all duration-300">
+        
+        <!-- Encabezado Estilo Estadio de Fútbol -->
+        <header class="bg-gradient-to-b from-emerald-950 via-emerald-800 to-green-700 p-6 sm:p-7 text-center text-white relative overflow-hidden border-b-4 border-amber-400">
+            <!-- Líneas decorativas de área de cancha en el encabezado -->
+            <div class="absolute inset-x-8 top-0 h-16 border-x-2 border-b-2 border-white/20 rounded-b-xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-2 border-white/20 pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-1.5 bg-amber-400 text-emerald-950 font-display font-bold text-xs uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md mb-3">
+                    <span>⚽</span> ¡Convocatoria Oficial! <span>🏆</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl font-bold leading-tight drop-shadow-md mb-1">
+                    ¡Ven a celebrar mis 14 años!
+                </h1>
+                <p class="font-display text-lg sm:text-xl font-bold text-amber-300 tracking-wide drop-shadow mb-2">
+                    Benjamin Velasquez Reque
+                </p>
+                <p class="text-emerald-100 text-xs sm:text-sm font-medium mb-5">
+                    Prepárate para un partido épico, piscina y parrilla con amigos.
+                </p>
+
+                <!-- Marco Tipo Cromo / Tarjeta de Jugador con Foto del Cumpleañero (Fija, sin opción de cambiar) -->
+                <div class="relative mx-auto w-48 sm:w-52">
+                    <div class="player-card-frame rounded-2xl p-2 relative overflow-hidden">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-emerald-900 flex items-center justify-center">
+                            <!-- Imagen fija del cumpleañero -->
+                            <img id="birthday-photo" 
+                                 src="WhatsApp Image 2026-11-15 at 11.05.45 AM.jpeg" 
+                                 style="object-fit: cover; object-position: top center;"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x500/065f46/fde047?text=⚽+BENJAMIN+%2314';"
+                                 alt="Foto de Benjamin Velasquez Reque - 14 años" 
+                                 class="w-full h-full">
+                            
+                            <!-- Etiqueta inferior estilo carta FIFA -->
+                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950/95 via-emerald-900/80 to-transparent pt-7 pb-2 px-2 text-center">
+                                <span class="font-display text-amber-300 font-bold text-[10px] tracking-widest uppercase block">CAPITÁN • 14 AÑOS</span>
+                                <span class="font-display text-white font-extrabold text-xs sm:text-sm tracking-wide leading-tight block">BENJAMIN VELASQUEZ REQUE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medalla del número 14 sobre la esquina de la tarjeta -->
+                    <div class="absolute -bottom-3 -right-3 w-14 h-14 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-emerald-950 shadow-xl border-4 border-white flex flex-col items-center justify-center badge-14 z-20">
+                        <span class="font-display text-2xl font-extrabold leading-none">14</span>
+                        <span class="text-[8px] font-bold uppercase tracking-tighter">AÑOS</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Cuerpo de la Invitación -->
+        <div class="p-6 sm:p-7 space-y-6">
+
+            <!-- Fecha, Hora y Lugar -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Tarjeta Fecha y Hora -->
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center space-x-3 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shrink-0 shadow">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold uppercase text-emerald-700 tracking-wide">¿Cuándo y a qué hora?</p>
+                        <p class="font-display text-base sm:text-lg font-bold text-slate-800 leading-tight">Sábado 21 de Noviembre</p>
+                        <p class="text-xs sm:text-sm font-bold text-emerald-700 mt-0.5"><i class="fa-regular fa-clock mr-1"></i>15:30 hrs (3:30 PM)</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Lugar -->
+                <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center space-x-3 shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shrink-0 shadow">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold uppercase text-amber-700 tracking-wide">¿Dónde?</p>
+                        <p class="font-display text-base sm:text-lg font-bold text-slate-800 leading-tight">Hotel Regina - Bungalow Sol</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Camino a Apote, Cochabamba</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Directo a Google Maps con cálculo de ruta desde la ubicación actual -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Hotel+Regina+Resort+%26+Convenciones%2C+Camino+a+Apote%2C+Cochabamba&travelmode=driving" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3.5 px-4 bg-emerald-950 hover:bg-emerald-900 active:scale-[0.98] text-white font-semibold rounded-2xl shadow-md flex items-center justify-center space-x-2 transition-all border border-emerald-700 text-center">
+                <i class="fa-solid fa-route text-amber-400 text-lg shrink-0"></i>
+                <span class="text-xs sm:text-sm">Cómo llegar (Calcular ruta en Google Maps)</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-75 shrink-0"></i>
+            </a>
+
+            <!-- Sección: ¿Qué habrá en la fiesta? -->
+            <div>
+                <h2 class="font-display text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <span>⚽</span> El Plan del Partido
+                </h2>
+                <div class="space-y-3">
+                    <!-- Fútbol -->
+                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg shrink-0 mt-0.5 shadow-sm">
+                            <i class="fa-solid fa-futbol"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-slate-800 text-base">Torneo y Juegos de Fútbol</h3>
+                            <p class="text-xs sm:text-sm text-slate-600">¡Arma tu equipo! Tendremos retas y mucha acción en la cancha.</p>
+                        </div>
+                    </div>
+
+                    <!-- Parrillada -->
+                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-amber-50 border border-amber-200/80">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shrink-0 mt-0.5 shadow-sm">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-slate-800 text-base">Deliciosa Parrilla (BBQ)</h3>
+                            <p class="text-xs sm:text-sm text-slate-600">¡Un súper asado para recargar energías después de los goles!</p>
+                        </div>
+                    </div>
+
+                    <!-- Piscina -->
+                    <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-sky-50 border border-sky-200/80">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center text-lg shrink-0 mt-0.5 shadow-sm">
+                            <i class="fa-solid fa-person-swimming"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-slate-800 text-base">Tarde de Piscina</h3>
+                            <p class="text-xs sm:text-sm text-slate-600">Chapuzones y refresco total después del partido bajo el sol.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Sugerencias para llevar -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5">
+                <h2 class="font-display text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <span>🎒</span> Equipaje del Jugador (No olvides traer):
+                </h2>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-emerald-600 font-bold text-base leading-none">👟</span>
+                        <span><strong>Ropa deportiva y tenis</strong> listos para dejarlo todo en la cancha.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-sky-500 font-bold text-base leading-none">🏊‍♂️</span>
+                        <span><strong>Traje de baño, toalla y bloqueador solar</strong> para la piscina.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-amber-500 font-bold text-base leading-none">👕</span>
+                        <span>Una <strong>muda de ropa seca</strong> extra para estar cómodo después del agua.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-rose-500 font-bold text-base leading-none">🏆</span>
+                        <span><strong>¡Toda la actitud campeona y ganas de divertirte!</strong></span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sección Interactiva: Confirmar Asistencia (RSVP) -->
+            <div class="pt-2">
+                <div id="rsvp-form-container" class="bg-gradient-to-br from-emerald-50 to-amber-50 border-2 border-dashed border-emerald-400 rounded-2xl p-5 text-center">
+                    <h2 class="font-display text-xl font-bold text-slate-800 mb-1">¿Confirmas tu fichaje? ⚽🙌</h2>
+                    <p class="text-xs text-slate-600 mb-4">Escribe tu nombre y envía tu confirmación directa por WhatsApp para asegurar tu lugar.</p>
+                    
+                    <div class="space-y-3">
+                        <input type="text" id="guest-name" placeholder="Escribe tu nombre aquí..." 
+                               class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm bg-white shadow-inner">
+                        
+                        <button onclick="confirmAttendance()" 
+                                class="w-full py-3.5 px-5 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 active:scale-[0.98] text-white font-display font-bold text-base rounded-xl shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl text-amber-300"></i>
+                            <span>Confirmar por WhatsApp</span>
+                        </button>
+                    </div>
+                    <!-- Mensaje de error inline si no escribe nombre -->
+                    <p id="error-msg" class="text-rose-600 text-xs font-semibold mt-2 hidden">
+                        ¡Por favor escribe tu nombre primero! 😊
+                    </p>
+                </div>
+
+                <!-- Mensaje de Confirmación Exitosa (oculto inicialmente) -->
+                <div id="rsvp-success-container" class="hidden bg-emerald-700 text-white rounded-2xl p-5 text-center shadow-lg space-y-3 border-2 border-amber-400">
+                    <div class="w-12 h-12 bg-amber-400 text-emerald-950 rounded-full flex items-center justify-center text-2xl mx-auto shadow">
+                        ⚽
+                    </div>
+                    <h3 class="font-display text-xl font-bold" id="confirmed-title">¡Fichaje Confirmado!</h3>
+                    <p class="text-sm text-emerald-50">
+                        ¡Nos vemos este <strong>Sábado 21 de noviembre a las 15:30 hrs en el Hotel Regina - Bungalow Sol (Camino a Apote, Cochabamba)</strong>!
+                    </p>
+                    
+                    <!-- Botón para enviar confirmación directa por WhatsApp -->
+                    <a id="whatsapp-share-btn" href="https://api.whatsapp.com/send?phone=59174323218" target="_blank" rel="noopener noreferrer"
+                       class="mt-2 w-full py-3 px-4 bg-white text-emerald-800 hover:bg-emerald-50 font-bold text-sm rounded-xl shadow flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp text-xl text-green-600"></i>
+                        <span>Enviar mensaje al +591 74323218</span>
+                    </a>
+
+                    <button onclick="resetRSVP()" class="text-xs underline text-emerald-200 hover:text-white block mx-auto pt-1">
+                        Registrar otro jugador
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pie de tarjeta -->
+        <footer class="bg-emerald-950 py-3.5 px-6 text-center border-t border-emerald-800">
+            <p class="text-xs text-emerald-200 font-medium">Cumpleaños #14 de Benjamin Velasquez Reque • ¡No faltes! ⚽🏊‍♂️🍖</p>
+        </footer>
+    </main>
+
+    <script>
+        // Generar balones de fútbol flotantes dinámicamente en el fondo
+        function createFloatingBalls() {
+            const container = document.getElementById('bubbles-container');
+            const ballCount = 12;
+            for (let i = 0; i < ballCount; i++) {
+                const ball = document.createElement('div');
+                ball.classList.add('floating-ball');
+                ball.textContent = '⚽';
+                const size = Math.random() * 20 + 18;
+                ball.style.fontSize = `${size}px`;
+                ball.style.left = `${Math.random() * 100}vw`;
+                ball.style.animationDuration = `${Math.random() * 9 + 9}s`;
+                ball.style.animationDelay = `${Math.random() * 6}s`;
+                container.appendChild(ball);
+            }
+        }
+
+        // Lanzar confeti verde, blanco y amarillo al cargar la página
+        window.onload = function() {
+            createFloatingBalls();
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 65,
+                    spread: 75,
+                    colors: ['#16a34a', '#facc15', '#ffffff'],
+                    origin: { y: 0.6 }
+                });
+            }
+        };
+
+        // Lógica de confirmación de asistencia con apertura directa en WhatsApp (+59174323218)
+        function confirmAttendance() {
+            const nameInput = document.getElementById('guest-name');
+            const errorMsg = document.getElementById('error-msg');
+            const guestName = nameInput.value.trim();
+
+            if (!guestName) {
+                errorMsg.classList.remove('hidden');
+                nameInput.focus();
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+
+            // Actualizar textos de confirmación
+            document.getElementById('confirmed-title').textContent = `¡Golazo, ${guestName}!`;
+            
+            // Mensaje prellenado dirigido a Benjamin Velasquez Reque (+591 74323218)
+            const mensajeWhatsApp = `¡Hola Benjamin! Soy ${guestName} y confirmo mi asistencia a tus 14 años este Sábado 21 de noviembre a las 15:30 hrs en el Hotel Regina Resort & Convenciones - Bungalow Sol (Camino a Apote, Cochabamba). ¡Listo para el fútbol, la parrilla y la piscina! ⚽🎉🏊‍♂️`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=59174323218&text=${encodeURIComponent(mensajeWhatsApp)}`;
+            
+            document.getElementById('whatsapp-share-btn').href = whatsappUrl;
+
+            // Cambiar vista
+            document.getElementById('rsvp-form-container').classList.add('hidden');
+            document.getElementById('rsvp-success-container').classList.remove('hidden');
+
+            // Celebración con confeti temático verde, amarillo y blanco
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 110,
+                    spread: 85,
+                    colors: ['#15803d', '#facc15', '#ffffff'],
+                    origin: { y: 0.7 }
+                });
+            }
+
+            // Abrir directamente WhatsApp
+            window.location.href = whatsappUrl;
+        }
+
+        // Permitir confirmar presionando Enter
+        document.getElementById('guest-name').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                confirmAttendance();
+            }
+        });
+
+        // Resetear formulario para registrar a alguien más
+        function resetRSVP() {
+            document.getElementById('guest-name').value = '';
+            document.getElementById('rsvp-success-container').classList.add('hidden');
+            document.getElementById('rsvp-form-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
